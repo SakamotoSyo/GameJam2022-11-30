@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     private int _player2Score = 0;
 
     [SerializeField] UIManager _uIManager;
+    [SerializeField] PlayerMovementController _playerMovementController;
+    [SerializeField] PlayerMovementController _playerMovementController2;
 
     private bool _isGame = false;
     private void Awake()
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-      StartCoroutine(StartCount());
+        StartCoroutine(StartCount());
     }
 
     void Update()
@@ -81,6 +83,9 @@ public class GameManager : MonoBehaviour
         _startCountText.text = "1";
         yield return new WaitForSeconds(1);
         _startCountText.text = "Start";
+        _onGameStart.Invoke();
+        _playerMovementController.GetPlayerInput.InputBlock();
+        _playerMovementController2.GetPlayerInput.InputBlock();
         _isGame = true;
         yield return new WaitForSeconds(1);
         _startCountText.text = "";
@@ -95,6 +100,9 @@ public class GameManager : MonoBehaviour
             {
                 _uIManager.SetGameEndPanel(0);
                 _onGameEnd.Invoke();
+                _playerMovementController.GetPlayerInput.InputBlock();
+                _playerMovementController2.GetPlayerInput.InputBlock();
+                _isGame = false;
             }//Gameéûä‘Ç™0ÇæÇ¡ÇΩÇÁèIóπ
             else
             {
@@ -121,6 +129,9 @@ public class GameManager : MonoBehaviour
             {
                 _uIManager.SetGameEndPanel(1);
                 _onGameEnd.Invoke();
+                _playerMovementController.GetPlayerInput.InputBlock();
+                _playerMovementController2.GetPlayerInput.InputBlock();
+                _isGame = false;
             }
         }
         else if (playerNumber == 2)
@@ -129,8 +140,11 @@ public class GameManager : MonoBehaviour
 
             if (_player2Score == _winPoint)
             {
-            _uIManager.SetGameEndPanel(2);
+                _uIManager.SetGameEndPanel(2);
                 _onGameEnd.Invoke();
+                _playerMovementController.GetPlayerInput.InputBlock();
+                _playerMovementController2.GetPlayerInput.InputBlock();
+                _isGame = false;
             }
         }
     }
