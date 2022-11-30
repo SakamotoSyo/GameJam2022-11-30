@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerMove
 {
+    public Collider2D Col => _col;
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpPower;
@@ -13,6 +14,7 @@ public class PlayerMove
     [Header("GroundLayer")]
     [SerializeField] LayerMask _groundMask;
 
+    private Collider2D _col;
     private PlayerInput _input;
 
     public void Init(PlayerInput input) 
@@ -20,11 +22,11 @@ public class PlayerMove
         _input = input;
     }
 
-    public void Update(Transform transform) 
+    public void Update(Transform transform)
     {
-        Collider2D col = Physics2D.OverlapBox(transform.position, _asi, 0f, _groundMask);
+        _col = Physics2D.OverlapBox(transform.position, _asi, 0f, _groundMask);
 
-        if (_input.Jump && col)
+        if (_input.Jump && _col)
         {
             _rb.velocity = new Vector2(_rb.velocity.x, _jumpPower);
         }

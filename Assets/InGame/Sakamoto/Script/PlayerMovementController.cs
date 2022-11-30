@@ -22,6 +22,7 @@ public class PlayerMovementController : MonoBehaviour, IDamage
         _playerInput.Update();
         _playerMove.Update(transform);
         _playerAnim.Update();
+        _playerAnim.CollderJudege(_playerMove.Col == null ? true : false);
     }
 
     private void FixedUpdate()
