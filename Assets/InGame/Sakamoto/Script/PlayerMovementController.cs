@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour, IDamage
 {
+    public PlayerInput GetPlayerInput => _playerInput; 
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlayerMove _playerMove;
     [SerializeField] private PlayerDamage _playerDamage;
