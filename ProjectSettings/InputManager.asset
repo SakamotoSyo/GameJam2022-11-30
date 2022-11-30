@@ -327,10 +327,10 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: Action1
-    descriptiveName: F
-    descriptiveNegativeName: F
-    negativeButton: 
-    positiveButton: left alt
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: f
+    positiveButton: f
     altNegativeButton: 
     altPositiveButton: joystick button 1
     gravity: 0
