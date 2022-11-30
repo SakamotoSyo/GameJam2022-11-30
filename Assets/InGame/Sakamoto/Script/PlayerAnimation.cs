@@ -8,6 +8,7 @@ public class PlayerAnimation
     [SerializeField] Animator _anim;
     
     PlayerInput _input;
+    bool _isGround;
 
     public void Init(PlayerInput playerInput) 
     {
@@ -32,7 +33,13 @@ public class PlayerAnimation
         {
             _anim.SetBool("Punch", false);
         }
+        _anim.SetBool("Jump", _isGround);
         _anim.SetFloat("X", _input.LastMoveDir.x);
+    }
+
+    public void CollderJudege(bool u) 
+    {
+        _isGround = u;
     }
 
     
