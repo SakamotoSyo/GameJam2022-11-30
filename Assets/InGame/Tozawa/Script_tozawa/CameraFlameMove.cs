@@ -31,6 +31,7 @@ public class CameraFlameMove : MonoBehaviour
     bool _isMove = false;
     bool _isInside = false;
     PlayerMovementController _pMC;
+    AudioSource _sound;
     //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     const int NUM_HALF = 2;
     const int NUM_ONE = 1;
@@ -38,6 +39,7 @@ public class CameraFlameMove : MonoBehaviour
     {
         SizeChange();//フレームの大きさ変更
         SetInitialPos();//初期位置設定
+        _sound = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -63,6 +65,7 @@ public class CameraFlameMove : MonoBehaviour
     }
     void PhotoShot()//撮影処理
     {
+        _sound.Play();
         if (_pMC!=null)
         {
             _pMC.Photographed();
