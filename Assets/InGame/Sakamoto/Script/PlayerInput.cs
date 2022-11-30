@@ -22,7 +22,7 @@ public class PlayerInput
     [Tooltip("現在ジャンプ中かどうか")]
     bool _isJump = false;
     [Tooltip("Inputをブロックするかどうか")]
-    bool _inputBlock = false;
+    bool _inputBlock = true;
 
     /// <summary>現在アクション中かどうか返す</summary>
     public bool Action
