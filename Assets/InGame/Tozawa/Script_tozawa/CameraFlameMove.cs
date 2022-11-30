@@ -55,7 +55,7 @@ public class CameraFlameMove : MonoBehaviour
         _time += Time.deltaTime;
         if(_time >= _takePhotoInterval)
         {
-            if(_isInside)PhotoShot();
+            PhotoShot();
             SetMoveStatus();
             _isMove = true;
             _time = 0;
@@ -63,7 +63,7 @@ public class CameraFlameMove : MonoBehaviour
     }
     void PhotoShot()//éBâeèàóù
     {
-        if(_pMC!=null)
+        if (_pMC!=null)
         {
             _pMC.Photographed();
         }
@@ -105,12 +105,11 @@ public class CameraFlameMove : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        _isInside = true;
+        Debug.Log("Called");
         _pMC = collision.GetComponent<PlayerMovementController>();
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _isInside = false;
         _pMC = null;
     }
 }
