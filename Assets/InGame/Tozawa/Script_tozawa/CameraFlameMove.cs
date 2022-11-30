@@ -30,6 +30,7 @@ public class CameraFlameMove : MonoBehaviour
     Vector3 _moveEndPos;
     bool _isMove = false;
     bool _isInside = false;
+    PlayerMovementController _pMC;
     //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     const int NUM_HALF = 2;
     const int NUM_ONE = 1;
@@ -54,7 +55,7 @@ public class CameraFlameMove : MonoBehaviour
         _time += Time.deltaTime;
         if(_time >= _takePhotoInterval)
         {
-            PhotoShot();
+            if(_isInside)PhotoShot();
             SetMoveStatus();
             _isMove = true;
             _time = 0;
@@ -62,7 +63,10 @@ public class CameraFlameMove : MonoBehaviour
     }
     void PhotoShot()//éBâeèàóù
     {
-
+        if(_pMC!=null)
+        {
+            _pMC.Photographed();
+        }
     }
 
     void SetMoveStatus()//à⁄ìÆÇÃÇΩÇﬂÇÃà íuíËã`
@@ -102,10 +106,11 @@ public class CameraFlameMove : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         _isInside = true;
-        //collision.GetComponent(typeof("PlayerMoveController"));
+        _pMC = collision.GetComponent<PlayerMovementController>();
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         _isInside = false;
+        _pMC = null;
     }
 }
