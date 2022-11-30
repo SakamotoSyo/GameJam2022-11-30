@@ -7,6 +7,7 @@ public class PlayerMovementController : MonoBehaviour, IDamage
     public PlayerInput GetPlayerInput => _playerInput; 
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlayerMove _playerMove;
+    [SerializeField] private PlayerAction _playerAction;
     [SerializeField] private PlayerDamage _playerDamage;
     [SerializeField] private PlayerAnimation _playerAnim;
     [SerializeField] private PlayerPhotographed _playerPhotographed;
@@ -15,6 +16,8 @@ public class PlayerMovementController : MonoBehaviour, IDamage
         _playerMove.Init(_playerInput);
         _playerPhotographed.Init(_playerInput);
         _playerAnim.Init(_playerInput);
+        _playerAction.Init(_playerInput);
+        _playerDamage.Init(_playerInput);
     }
 
     private void Update()
@@ -22,6 +25,7 @@ public class PlayerMovementController : MonoBehaviour, IDamage
         _playerInput.Update();
         _playerMove.Update(transform);
         _playerAnim.Update();
+        _playerAction.Update(transform);
         _playerAnim.CollderJudege(_playerMove.Col == null ? true : false);
     }
 
