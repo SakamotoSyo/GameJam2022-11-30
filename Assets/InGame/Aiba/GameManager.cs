@@ -36,9 +36,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] PlayerMovementController _playerMovementController2;
 
     private bool _isGame = false;
+
+    [SerializeField] AudioClip _drawAudio;
+    [SerializeField] AudioClip _winAudio;
+
+    AudioSource _aud;
     private void Awake()
     {
         _countTime = _gameTime;
+        _aud = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -102,6 +108,7 @@ public class GameManager : MonoBehaviour
                 _onGameEnd.Invoke();
                 _playerMovementController.GetPlayerInput.InputBlock();
                 _playerMovementController2.GetPlayerInput.InputBlock();
+                _aud.PlayOneShot(_drawAudio);
                 _isGame = false;
             }//Gameéûä‘Ç™0ÇæÇ¡ÇΩÇÁèIóπ
             else
@@ -131,7 +138,8 @@ public class GameManager : MonoBehaviour
                 _onGameEnd.Invoke();
                 _playerMovementController.GetPlayerInput.InputBlock();
                 _playerMovementController2.GetPlayerInput.InputBlock();
-                _isGame = false;
+                _isGame = false;     
+                _aud.PlayOneShot(_winAudio);
             }
         }
         else if (playerNumber == 2)
@@ -145,6 +153,7 @@ public class GameManager : MonoBehaviour
                 _playerMovementController.GetPlayerInput.InputBlock();
                 _playerMovementController2.GetPlayerInput.InputBlock();
                 _isGame = false;
+                _aud.PlayOneShot(_winAudio);
             }
         }
     }
