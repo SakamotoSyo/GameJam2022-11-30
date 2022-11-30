@@ -52,7 +52,10 @@ public class CameraFlameMove : MonoBehaviour
             FlameMove();//移動
         }
     }
-    void CountTimer()//インターバルごとに撮影＆移動
+    /// <summary>
+    /// インターバルごとに撮影＆移動
+    /// </summary>
+    void CountTimer()
     {
         _time += Time.deltaTime;
         if(_time >= _takePhotoInterval)
@@ -63,7 +66,10 @@ public class CameraFlameMove : MonoBehaviour
             _time = 0;
         }
     }
-    void PhotoShot()//撮影処理
+    /// <summary>
+    /// 撮影処理
+    /// </summary>
+    void PhotoShot()
     {
         _sound.Play();
         if (_pMC!=null)
@@ -71,14 +77,19 @@ public class CameraFlameMove : MonoBehaviour
             _pMC.Photographed();
         }
     }
-
-    void SetMoveStatus()//移動のための位置定義
+    /// <summary>
+    /// 移動のための位置定義
+    /// </summary>
+    void SetMoveStatus()
     {
         _moveStartPos = this.transform.position;//開始地点(現在地)決定
         _moveEndPos = RandomPos();//次の移動場所
         _moveDistance = Vector3.Distance(_moveStartPos,_moveEndPos);//二点間の距離
     }
-    void FlameMove()//移動
+    /// <summary>
+    /// 移動
+    /// </summary>
+    void FlameMove()
     {
         _time += Time.deltaTime;
         presentPos = (_time * _moveSpeed) / _moveDistance;
@@ -90,18 +101,26 @@ public class CameraFlameMove : MonoBehaviour
             _isMove = false;
         }
     }
-    void SetInitialPos()//初期位置設定
+    /// <summary>
+    /// 初期位置設定
+    /// </summary>
+    void SetInitialPos()
     {
         gameObject.transform.position = RandomPos();
     }
-
-    Vector3 RandomPos()//画面内のランダムな座標を返す（Vector2）
+    /// <summary>
+    /// 画面内のランダムな座標を返す（Vector2）
+    /// </summary>
+    Vector3 RandomPos()
     {
         _CameraXPos = Random.Range(-_xRange,_xRange);
         _CameraYPos = Random.Range(-_yRange,_yRange);
         return new Vector3(_CameraXPos,_CameraYPos);
     }
-    void SizeChange()//フレームの大きさ変更
+    /// <summary>
+    /// フレームの大きさ変更
+    /// </summary>
+    void SizeChange()
     {
         _flameSize = new Vector3(_flameLength, _flameLength, _flameLength);
         gameObject.transform.localScale = _flameSize;
