@@ -9,10 +9,6 @@ public class Events : MonoBehaviour
 
     [SerializeField] GameObject _lightDown1;
     [SerializeField] GameObject _lightDown2;
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -32,5 +28,8 @@ public class Events : MonoBehaviour
         yield return new WaitForSeconds(5);
         _lightDown1.SetActive(true);
     }
+
+
+
 
 }

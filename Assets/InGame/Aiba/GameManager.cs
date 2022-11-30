@@ -40,6 +40,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip _drawAudio;
     [SerializeField] AudioClip _winAudio;
 
+    int _eventCount;
+    [SerializeField] GameObject _light1;
+    [SerializeField] GameObject _light2;
+
     AudioSource _aud;
     private void Awake()
     {
@@ -102,6 +106,19 @@ public class GameManager : MonoBehaviour
     {
         if (_isGame)
         {
+            if(_countTime<45 && _eventCount==0)
+            {
+                _eventCount++;
+                _light1.SetActive(true);
+            }
+
+            if (_countTime < 20 && _eventCount == 1)
+            {
+                _eventCount++;
+                _light2.SetActive(true);
+            }
+
+
             if (_countTime <= 0)
             {
                 _uIManager.SetGameEndPanel(0);
