@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class LightOff : MonoBehaviour
 {
-
+    [SerializeField] GameObject _oj;
     public void Off()
     {
-        this.gameObject.SetActive(false);
+        _oj.SetActive(false);
     }
 }
