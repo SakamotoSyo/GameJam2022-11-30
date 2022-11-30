@@ -7,13 +7,20 @@ public class PlayerAction
 {
     [Header("パンチの判定を出す座標")]
     [SerializeField] Transform[] _punchPos = new Transform[1];
-    [Header("Rayを出す方向")]
-    [SerializeField] PlayerInput _playerInput;
     [Header("パンチの判定距離")]
     [SerializeField] float _punchRay;
     [Header("スタンさせる時間")]
     [SerializeField] float _stanTime;
-    void Update(Transform transform)
+
+    [Tooltip("Rayを出す方向")]
+    PlayerInput _playerInput;
+
+    public void Init(PlayerInput input) 
+    {
+        _playerInput = input;
+    }
+
+    public void Update(Transform transform)
     {
         if (_playerInput.Action)
         {
@@ -21,6 +28,7 @@ public class PlayerAction
 
             if (hit.collider.TryGetComponent(out IDamage damage)) 
             {
+                Debug.Log("見つけた");
                 damage.AddDamage(_stanTime);
             }
         }
